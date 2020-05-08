@@ -25,6 +25,7 @@
  */
 
 const compileTypeScriptIfRequired = require('./typescript-if-required');
+const os = require('os');
 
 const supportedProducts = {
   chrome: 'Chromium',
@@ -97,6 +98,7 @@ async function download() {
      * @return {!Promise}
      */
     function onSuccess(localRevisions) {
+    if (os.arch() !== 'arm64')
       logPolitely(
         `${supportedProducts[product]} (${revisionInfo.revision}) downloaded to ${revisionInfo.folderPath}`
       );
