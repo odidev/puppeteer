@@ -38,6 +38,19 @@ jobs:
         - travis_retry npm run unit-with-coverage
         - npm run assert-unit-coverage
 
+    - node_js: "10.19.0"
+      name: 'Unit tests [with coverage]: Linux/Chromium'
+      arch: arm64
+      env:
+        - CHROMIUM=true
+      before_install:
+        - sudo apt-get install chromium-browser
+        - export "CHROME_BIN"=/usr/bin/chromium-browser
+        - PUPPETEER_PRODUCT=firefox npm install
+      script:
+        - travis_retry npm run unit-with-coverage
+        - npm run assert-unit-coverage
+        
     - node_js: "12.16.3"
       name: 'Unit tests [Node 12]: Linux/Chromium'
       env:
@@ -46,6 +59,18 @@ jobs:
         - PUPPETEER_PRODUCT=firefox npm install
       script:
         - travis_retry npm run unit
+       
+    - node_js: "12.16.3"
+      name: 'Unit tests [Node 12]: Linux/Chromium'
+      arch: arm64
+      env:
+        - CHROMIUM=true
+      before_install:
+        - sudo apt-get install chromium-browser
+        - export "CHROME_BIN"=/usr/bin/chromium-browser
+        - PUPPETEER_PRODUCT=firefox npm install
+      script:
+        - travis_retry npm run unit   
 
     - node_js: "14.2.0"
       name: 'Unit tests [Node 14]: Linux/Chromium'
@@ -55,6 +80,18 @@ jobs:
         - PUPPETEER_PRODUCT=firefox npm install
       script:
         - travis_retry npm run unit
+        
+    - node_js: "14.2.0"
+      name: 'Unit tests [Node 14]: Linux/Chromium'
+      arch: arm64
+      env:
+        - CHROMIUM=true
+      before_install:
+        - sudo apt-get install chromium-browser
+        - export "CHROME_BIN"=/usr/bin/chromium-browser
+        - PUPPETEER_PRODUCT=firefox npm install
+      script:
+        - travis_retry npm run unit    
 
     # This bot runs all the extra checks that aren't the main Puppeteer unit tests
     - node_js: "10.19.0"
@@ -67,6 +104,21 @@ jobs:
         - npm run lint
         - npm run test-doclint
         - npm run test-types
+        
+    - node_js: "10.19.0"
+      name: 'Extra tests: Linux/Chromium'
+      arch: arm64
+      env:
+        - CHROMIUM=true
+      before_install:
+        - sudo apt-get install chromium-browser
+        - export "CHROME_BIN"=/usr/bin/chromium-browser
+      script:
+        - npm run compare-protocol-d-ts
+        - npm run test-install
+        - npm run lint
+        - npm run test-doclint
+        - npm run test-types    
 
     # Runs unit tests on Linux + Firefox
     - node_js: "10.19.0"
@@ -77,6 +129,18 @@ jobs:
         - PUPPETEER_PRODUCT=firefox npm install
       script:
         - travis_retry npm run funit
+  
+    - node_js: "10.19.0"
+      name: 'Unit tests: Linux/Firefox'
+      arch: arm64
+      env:
+        - FIREFOX=true
+      before_install:
+        - sudo apt-get install chromium-browser
+        - export "CHROME_BIN"=/usr/bin/chromium-browser
+        - PUPPETEER_PRODUCT=firefox npm install
+      script:
+        - travis_retry npm run funit 
 
 notifications:
   email: false
