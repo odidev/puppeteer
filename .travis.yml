@@ -136,7 +136,7 @@ jobs:
       env:
         - FIREFOX=true
       before_install:
-        - sudo apt-get install firefox
+        - sudo apt-get install firefox chromium-browser
         - export "FIREFOX_BIN"=/usr/bin/firefox
         - PUPPETEER_PRODUCT=firefox npm install
       script:
