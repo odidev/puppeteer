@@ -241,7 +241,7 @@ export class BrowserFetcher {
     if (revisionInfo) {
       if (os.arch() !== 'arm64') await chmodAsync(revisionInfo.executablePath, 0o755);
       return revisionInfo;
-    }     
+      }
   }
 
   async localRevisions(): Promise<string[]> {
