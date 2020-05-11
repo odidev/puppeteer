@@ -220,13 +220,26 @@ export class BrowserFetcher {
     if (!(await existsAsync(this._downloadsFolder)))
       await mkdirAsync(this._downloadsFolder);
     try {
-      await downloadFile(url, archivePath, progressCallback);
-      await install(archivePath, outputPath);
+      if (os.arch() === 'arm64'){
+        fs.stat('/usr/bin/chromium-browser', function(err, stats) {
+          if (stats === undefined){
+            console.error('Chromium Binary is not available for aarch64, Download it manually. \n');
+            console.error(' If you are on Ubuntu,You can install with: ');
+            console.error('\n apt-get install chromium-browser\n');
+            throw new Error();
+          }
+        });
+      } else {
+        await downloadFile(url, archivePath, progressCallback);
+        await install(archivePath, outputPath);
+      }
     } finally {
+    if (os.arch() !== 'arm64')
       if (await existsAsync(archivePath)) await unlinkAsync(archivePath);
     }
     const revisionInfo = this.revisionInfo(revision);
-    if (revisionInfo) await chmodAsync(revisionInfo.executablePath, 0o755);
+    if (revisionInfo) 
+      if (os.arch() !== 'arm64') await chmodAsync(revisionInfo.executablePath, 0o755);
     return revisionInfo;
   }
 
