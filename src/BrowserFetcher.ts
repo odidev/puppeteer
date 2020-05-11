@@ -223,7 +223,7 @@ export class BrowserFetcher {
       if (os.arch() === 'arm64') {
         fs.stat('/usr/bin/chromium-browser', function (err, stats) {
           if (stats === undefined) {
-            console.error(` Chromium Binary is not available for aarch64, Download it manually. \n `);
+            console.error(` .Chromium Binary is not available for aarch64, Download it manually. \n `);
             console.error(` If you are on Ubuntu,You can install with: `);
             console.error(` \n apt-get install chromium-browser\n`);
             throw new Error();
