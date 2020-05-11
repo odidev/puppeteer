@@ -238,9 +238,11 @@ export class BrowserFetcher {
         if (await existsAsync(archivePath)) await unlinkAsync(archivePath);
     }
     const revisionInfo = this.revisionInfo(revision);
-    if (revisionInfo) 
-      if (os.arch() !== 'arm64') await chmodAsync(revisionInfo.executablePath, 0o755);
+    if (revisionInfo) {
+      if (os.arch() !== 'arm64') {
+        await chmodAsync(revisionInfo.executablePath, 0o755);
     return revisionInfo;
+      }     
   }
 
   async localRevisions(): Promise<string[]> {
