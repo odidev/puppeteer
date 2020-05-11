@@ -66,12 +66,10 @@ const defaultBrowserOptions = {
   if (defaultBrowserOptions.executablePath) {
     console.warn(
       `WARN: running ${product} tests with ${defaultBrowserOptions.executablePath}`
+      console.log ('hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii' + executablePath);
     );
   } else {
     if (product === 'firefox') await puppeteer._launcher._updateRevision();
-      if (os.arch() === 'arm64') {
-        const executablePath = '/usr/bin/firefox';
-      }
     const executablePath = puppeteer.executablePath();
     if (!fs.existsSync(executablePath))
       throw new Error(
