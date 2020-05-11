@@ -136,8 +136,8 @@ jobs:
       env:
         - FIREFOX=true
       before_install:
-        - sudo apt-get install chromium-browser
-        - export "CHROME_BIN"=/usr/bin/chromium-browser
+        - sudo apt-get install firefox
+        - export "FIREFOX_BIN"=/usr/bin/firefox
         - PUPPETEER_PRODUCT=firefox npm install
       script:
         - travis_retry npm run funit 
