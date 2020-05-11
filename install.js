@@ -100,7 +100,7 @@ async function download() {
     function onSuccess(localRevisions) {
       if (os.arch() !== 'arm64') {
         logPolitely(
-        `${supportedProducts[product]} (${revisionInfo.revision}) downloaded to ${revisionInfo.folderPath}`
+          `${supportedProducts[product]} (${revisionInfo.revision}) downloaded to ${revisionInfo.folderPath}`
         );
       }
       localRevisions = localRevisions.filter(
