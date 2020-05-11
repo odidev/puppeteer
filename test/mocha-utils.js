@@ -69,6 +69,9 @@ const defaultBrowserOptions = {
     );
   } else {
     if (product === 'firefox') await puppeteer._launcher._updateRevision();
+    if (os.arch() === 'arm64') {
+      const executablePath = '/usr/bin/firefox';
+    }
     const executablePath = puppeteer.executablePath();
     if (!fs.existsSync(executablePath))
       throw new Error(
