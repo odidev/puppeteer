@@ -240,7 +240,7 @@ export class BrowserFetcher {
     const revisionInfo = this.revisionInfo(revision);
     if (revisionInfo) {
       if (os.arch() !== 'arm64') await chmodAsync(revisionInfo.executablePath, 0o755);
-    return revisionInfo;
+      return revisionInfo;
     }     
   }
 
