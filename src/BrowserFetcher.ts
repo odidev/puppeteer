@@ -180,7 +180,7 @@ export class BrowserFetcher {
     return this._downloadHost;
   }
 
-  canDownload(revision: string): Promise<boolean> {
+  canDownload(revision: string): Promise<boolean> 
     const url = downloadURL(
       this._product,
       this._platform,
@@ -223,7 +223,7 @@ export class BrowserFetcher {
       if (os.arch() === 'arm64') {
         fs.stat('/usr/bin/chromium-browser', function (err, stats) {
           if (stats === undefined) {
-            console.error(` The chromium binary is not available for arm64,Download it manually: `);
+            console.error(` The chromium binary is not available for arm64: Download it manually `);
             console.error(` If you are on Ubuntu,You can install with: `);
             console.error(` \n apt-get install chromium-browser\n`);
             throw new Error();
