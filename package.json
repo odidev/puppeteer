@@ -1,9 +1,9 @@
 {
   "name": "puppeteer",
-  "version": "3.0.5",
+  "version": "3.0.4-post",
   "description": "A high-level API to control headless Chrome over the DevTools Protocol",
   "main": "index.js",
-  "repository": "github:odidev/puppeteer",
+  "repository": "github:puppeteer/puppeteer",
   "engines": {
     "node": ">=10.18.1"
   },
@@ -27,7 +27,7 @@
     "eslint-fix": "eslint --ext js --ext ts --fix .",
     "lint": "npm run eslint && npm run tsc && npm run doc",
     "doc": "node utils/doclint/cli.js",
-    "tsc": "tsc --version && tsc -p tsconfig.json && cp src/protocol.d.ts lib/",
+    "tsc": "tsc --version && tsc -p . && cp src/protocol.d.ts lib/",
     "apply-next-version": "node utils/apply_next_version.js",
     "test-types": "node utils/doclint/generate_types && tsc --version && tsc -p utils/doclint/generate_types/test/",
     "update-protocol-d-ts": "node utils/protocol-types-generator update",
